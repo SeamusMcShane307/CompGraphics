@@ -1,0 +1,177 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS 45500 - Homework 3</title>
+  <meta name="description" content="CS 45500 Homework 3">
+  <meta name="author" content="Roger L. Kraft">
+  <link rel="stylesheet" href="http://math.pnw.edu/~rlkraft/roger-v2.css">
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<!--
+<header>
+  <a href="http://math.pnw.edu/~rlkraft/" title="Roger L. Kraft">Roger L. Kraft</a>
+</header>
+ -->
+<nav>
+  <ul class="nav-list" role="navigation">
+    <li><a href="../cs45500.html">CS 45500</a></li>
+    <li><a href="../syllabus.html">Syllabus</a></li>
+    <li><a href="../class.html">Lectures and Readings</a></li>
+    <li><a href="../homework.html">Homework Assignments</a></li>
+  </ul>
+  <ul class="nav-list" role="navigation">
+    <li><a href="http://math.pnw.edu/~rlkraft/roger.html">Roger Kraft</a></li>
+    <li><a href="https://pnw.edu/computer-science/">Computer Science Department</a></li>
+    <li><a href="https://pnw.edu/engineering/">School of Engineering</a></li>
+    <li><a href="https://pnw.edu/college-of-engineering-sciences/">College of Engineering & Sciences</a></li>
+    <li><a href="https://pnw.edu/">Purdue University Northwest</a></li>
+  </ul>
+</nav>
+
+<section id="Content">
+<h1>
+Programming Assignment 3<br>
+CS 45500<br>
+Computer Graphics<br>
+Fall, 2022
+</h1>
+
+<p>
+This assignment makes use of the files contained in this <a href="hw3.zip">zip file</a>.
+This assignment is due Tuesday, October 18.
+</p>
+
+<p>
+This assignment and your previous assignment are about the <code>Scene</code> data structure which describes the geometry of what the renderer should draw. For this assignment, you will define several <code>Model</code> data structures that represent fractal shapes and then test your models in an interactive program.
+</p>
+
+<p>
+As we have said in class, a <code>Scene</code> is a list of positions that hold models. A <code>Model</code> is a list of vertices in 3-dimensional space (which we call "camera space") and a list of line segments. Each <code>Vertex</code> contains three doubles (for the <code>x</code>, <code>y</code>, and <code>z</code> coordinates of a point). Each <code>LineSegment</code> contains the (integer) index for each of two <code>Vertex</code> objects from the <code>Model</code>'s vertex list. The vertices and line segments combine to form a <a href="https://en.wikipedia.org/wiki/Wire-frame_model">wireframe</a> shape that we see as a geometric object in the scene.
+</p>
+
+<p>
+In the zip file there is a package, <code>fractals</code>, of seven Java source files. Each of those files defines a sub-class of the <code>Model</code> class from the <code>scene</code> package. The files <code>Canopy.java</code> and <code>KochCurve.java</code> are complete. You need to complete the other five files in the package. These are two-dimensional models (all the vertices are in the xy-plane). For each model, you need to determine the <code>Vertex</code> and <code>LineSegment</code> objects that the model needs and then write the code that instantiates those objects and puts them into the model. Use the two completed models to help you figure out how to complete the other five models. Each model in the package has completed Javadocs. The Javadocs include all the formulas that you need to define the fractal shapes.
+</p>
+
+<p>
+If you want to see more examples of <code>Model</code> classes, look at the files in the <code>models</code> package in <a href="http://math.pnw.edu/~rlkraft/cs45500/renderer_2.zip">renderer_2.zip</a>. In particular, look at the files <code>Square.java<code>, </code>Circle.java</code>, <code>Cube.java</code>, and <code>Tetrahedron.java</code>, because those are the simplest models.
+</p>
+
+<p>
+In the zip file there is a program <code>InteractiveModelsAll.java</code> that instantiates examples of all the fractal models. Use this program to interactively test your definitions of the models. Work on one model at a time. Comment out from <code>InteractiveModelsAll.java</code> the code that instantiates models that you have not completed. The program <code>InteractiveModelsAll.java</code> tests the two completed models first, so you can run <code>InteractiveModelsAll.java</code> even before you write any code.
+</p>
+
+<p>
+This assignment uses <a href="http://math.pnw.edu/~rlkraft/cs45500/renderer_2.zip">renderer_2</a> (instead of <a href="http://math.pnw.edu/~rlkraft/cs45500/renderer_1.zip">renderer_1</a>). Renderer 2 has code in it that supports writing interactive programs (like <code>InteractiveModelsAll.java</code>). You do not need to understand how the interactive code works. You don't need to look at the code in <code>InteractiveModelsAll.java</code>. Next week we will start to talk about renderer_2 and interactive code (and in the <em>next</em> programming assignment you will write some interactive code). For this assignment, you only need to understand the scene data structure and how to define a Model class.
+</p>
+
+<p>
+In the zip file there is a folder called <code>demo</code> which contains a demo version of the completed assignment. Double click on the file <code>hw3_demo.cmd</code> to run the demo program (you may be able to run the program by double clicking on the <code>hw3_demo.jar</code> file).
+</p>
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Fractal">Fractals</a> are examples of <a href="https://en.wikipedia.org/wiki/Recursion">recursive</a> shapes. Like <a href="https://en.wikipedia.org/wiki/Recursive_data_type">recursive data structures</a>, recursive shapes are best defined using <a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)">recursive functions</a>. Defining recursive shapes and recursive data structures using recursive functions is often referred to as "<a href="https://en.wikipedia.org/wiki/Structural_induction">structural recursion</a>".
+</p>
+
+<p>
+Recursion can be difficult, but <a href="https://eecs280staff.github.io/notes/19_Structural_Recursion.html#structural-recursion">structural recursion</a> is the most accessible kind of recursion and it is often used as a way to introduce the idea of recursion. And fractals make the recursive definitions visible.
+</p>
+
+<p>
+The trick to figuring out a fractal recursion is to describe the geometry of the recursion in words, and then translate the words into code.
+
+For example, consider the <a href="https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle">Sierpinski Triangle</a>. Given three corners, <code>p0</code>, <code>p1</code>, <code>p2</code>, of a triangle, you need to create three new triangles.
+</p>
+<pre>
+                  + p0
+                 / \
+                /   \
+               /     \
+              /_______\
+             /\       /\
+            /  \     /  \
+           /    \   /    \
+          /      \ /      \
+         +--------|--------+
+        p2                 p1
+</pre>
+<p>
+The first triangle has corners <code>p0</code>, the midpoint between <code>p0</code> and <code>p1</code>, and the midpoint between <code>p0</code> and <code>p2</code>. The second triangle has corners <code>p1</code>, the midpoint between <code>p1</code> and <code>p2</code>, and the midpoint between <code>p1</code> and <code>p0</code>. The third triangle has corners <code>p2</code>, the midpoint between <code>p2</code> and <code>p0</code>, and the midpoint between <code>p2</code> and <code>p1</code>. So the recursion would look something like this.
+</p>
+<pre>
+   triangle(p0, p1, p2, n)
+   {
+      if (n > 0)
+      {
+         triangle(p0, (p0 + p1)/2, (p0 + p2)/2, n-1);  // recursion
+         triangle(p1, (p1 + p2)/2, (p1 + p0)/2, n-1);  // recursion
+         triangle(p2, (p2 + p0)/2, (p2 + p1)/2, n-1);  // recursion
+      }
+      else
+      {
+         addLineSegment(p0, p1);
+         addLineSegment(p1, p2);
+         addLineSegment(p2, p0);
+      }
+   }
+</pre>
+
+<p>
+For another example, consider the <a href="https://en.wikipedia.org/wiki/H_tree">H tree</a>. Given the two endpoints, <code>p0</code> and <code>p1</code>, of a line segment, you need to create two new line segments perpendicular to the given line segment and each with half the length.
+</p>
+<pre>
+              p2                    p4
+              +                     +
+              |                     |
+              |                     |
+           p0 +---------------------+ p1
+              |                     |
+              |                     |
+              +                     +
+              p3                    p5
+</pre>
+<p>
+The recursion would look something like this (the formulas for p2, p3, p4, and p5 are in the Javadocs for <code>H_Tree.java</code>)
+</p>
+<pre>
+   hTree(p0, p1, n)
+   {
+      addLineSegment(p0, p1);
+
+      if (n > 0)
+      {
+         // use p0 and p1 to compute p2, p3, p4, p5
+         hTree(p2, p3, n-1);  // recursion
+         hTree(p4, p5, n-1);  // recursion
+      }
+   }
+</pre>
+
+<p>
+<a href="http://math.pnw.edu/~rlkraft/cs45500/handin.html">Turn in</a> a zip file called <code>CS455Hw3Surname.zip</code> (where <code>Surname</code> is your last name) containing <code>InteractiveModelsAll.java</code> and your sub folder <code>fractals</code>.
+</p>
+
+<p>
+This assignment is due Tuesday, October 18.
+</p>
+
+</section>
+
+<footer>
+  <script language="JavaScript" type="text/javascript">
+    document.write("<font size=\"-2\"><i>Last modified on " + document.lastModified + ".<\/i><\/font>");
+  </script>
+  <br>
+  <a href="mailto:rlkraft@pnw.edu"><font size="-2"><i>compliments and criticisms</i></font></a>
+</footer>
+
+</body>
+</html>
