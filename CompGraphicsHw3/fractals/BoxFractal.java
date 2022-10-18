@@ -139,12 +139,14 @@ public class BoxFractal extends Model
                     final int vIndex3,
                     final int n)
    {
-      addPrimitive(new LineSegment(vIndex0,  vIndex1));
-      addPrimitive(new LineSegment(vIndex1,  vIndex2));
-      addPrimitive(new LineSegment(vIndex2,  vIndex3));
-      addPrimitive(new LineSegment(vIndex3,  vIndex0));
+      if( n <= 1){
+         addPrimitive(new LineSegment(vIndex0,  vIndex1));
+         addPrimitive(new LineSegment(vIndex1,  vIndex2));
+         addPrimitive(new LineSegment(vIndex2,  vIndex3));
+         addPrimitive(new LineSegment(vIndex3,  vIndex0));
+      }
 
-      if (n == 0)
+      if (n > 0)
       {
          final Vertex v0 = vertexList.get(vIndex0);
          final Vertex v1 = vertexList.get(vIndex1);
@@ -169,10 +171,10 @@ public class BoxFractal extends Model
          double xSplit = (x0 + x2)/2;
          double ySplit = (y0 + y2)/2;
 
-         double x4 = (2/3) * x0 + (1/3) * x1;
-         double x5 = (1/3) * x0 + (2/3) * x1;
-         double y6 = (2/3) * y0 + (1/3) * y1;
-         double y7 = (1/3) * y0 + (2/3) * y1;
+         double x4 = (2/3.0) * x0 + (1/3.0) * x1;
+         double x5 = (1/3.0) * x0 + (2/3.0) * x1;
+         double y6 = (2/3.0) * y0 + (1/3.0) * y2;
+         double y7 = (1/3.0) * y0 + (2/3.0) * y2;
          
          addVertex(  new Vertex(x4, y0, 0.0),
                      new Vertex(x5, y0, 0.0),
